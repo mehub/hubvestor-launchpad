@@ -4,7 +4,7 @@ import { BrandsGrid } from "@/components/ui/brands";
 import { Features } from "@/components/ui/features-4";
 import { Testimonials } from "@/components/ui/testimonials";
 import { CTASection } from "@/components/ui/cta-with-rectangle";
-import Footer from "@/components/Footer";
+import { Footer } from "@/components/ui/footer-section";
 
 const brands = [
   {
