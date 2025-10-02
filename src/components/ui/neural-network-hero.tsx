@@ -1,6 +1,5 @@
 import { useRef, useMemo } from 'react';
-import { Canvas, useFrame, extend } from '@react-three/fiber';
-import { shaderMaterial } from '@react-three/drei';
+import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
 import { useGSAP } from '@gsap/react';
@@ -151,29 +150,30 @@ const fragmentShader = `
   }
 `;
 
-const CPPNShaderMaterial = shaderMaterial(
-  { iTime: 0, iResolution: new THREE.Vector2(1, 1) },
-  vertexShader,
-  fragmentShader
-);
-
-extend({ CPPNShaderMaterial });
-
 function ShaderPlane() {
   const meshRef = useRef<THREE.Mesh>(null!);
-  const materialRef = useRef<any>(null!);
+  const materialRef = useRef<THREE.ShaderMaterial>(null!);
 
   useFrame((state) => {
     if (!materialRef.current) return;
-    materialRef.current.iTime = state.clock.elapsedTime;
+    materialRef.current.uniforms.iTime.value = state.clock.elapsedTime;
     const { width, height } = state.size;
-    materialRef.current.iResolution.set(width, height);
+    materialRef.current.uniforms.iResolution.value.set(width, height);
   });
 
   return (
     <mesh ref={meshRef} position={[0, -0.75, -0.5]}>
       <planeGeometry args={[4, 4]} />
-      <cPPNShaderMaterial ref={materialRef} side={THREE.DoubleSide} />
+      <shaderMaterial
+        ref={materialRef}
+        vertexShader={vertexShader}
+        fragmentShader={fragmentShader}
+        uniforms={{
+          iTime: { value: 0 },
+          iResolution: { value: new THREE.Vector2(1, 1) }
+        }}
+        side={THREE.DoubleSide}
+      />
     </mesh>
   );
 }
@@ -360,10 +360,4 @@ export default function NeuralNetworkHero({
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/40 to-transparent" />
     </section>
   );
-}
-
-declare module '@react-three/fiber' {
-  interface ThreeElements {
-    cPPNShaderMaterial: any;
-  }
 }
