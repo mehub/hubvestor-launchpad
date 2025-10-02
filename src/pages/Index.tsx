@@ -3,7 +3,7 @@ import NeuralNetworkHero from "@/components/ui/neural-network-hero";
 import { BrandsGrid } from "@/components/ui/brands";
 import { Features } from "@/components/ui/features-4";
 import { Testimonials } from "@/components/ui/testimonials";
-import CTA from "@/components/CTA";
+import { CTASection } from "@/components/ui/cta-with-rectangle";
 import Footer from "@/components/Footer";
 
 const brands = [
@@ -105,7 +105,18 @@ const Index = () => {
         maxDisplayed={6}
         className="container py-16 md:py-24"
       />
-      <CTA />
+      <CTASection
+        badge={{
+          text: "Get Started Today"
+        }}
+        title="Ready to Transform Your Business?"
+        description="Join hundreds of founders and investors who are building the future with Hubvestor"
+        action={{
+          text: "Start Your Journey",
+          href: "#signup",
+          variant: "cta"
+        }}
+      />
       <Footer />
     </div>
   );
