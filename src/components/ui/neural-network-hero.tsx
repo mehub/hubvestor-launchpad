@@ -1,5 +1,3 @@
-'use client';
-
 import { useRef, useMemo } from 'react';
 import { Canvas, useFrame, extend } from '@react-three/fiber';
 import { shaderMaterial } from '@react-three/drei';
@@ -7,9 +5,8 @@ import * as THREE from 'three';
 
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import { SplitText } from 'gsap/SplitText';
 
-gsap.registerPlugin(SplitText, useGSAP);
+gsap.registerPlugin(useGSAP);
 
 // ===================== SHADER =====================
 const vertexShader = `
@@ -258,65 +255,57 @@ export default function NeuralNetworkHero({
     () => {
       if (!headerRef.current) return;
 
-      document.fonts.ready.then(() => {
-        const split = new SplitText(headerRef.current!, {
-          type: 'lines',
-          wordsClass: 'lines',
-        });
-
-        gsap.set(split.lines, {
-          filter: 'blur(16px)',
-          yPercent: 30,
-          autoAlpha: 0,
-          scale: 1.06,
-          transformOrigin: '50% 100%',
-        });
-
-        if (badgeRef.current) {
-          gsap.set(badgeRef.current, { autoAlpha: 0, y: -8 });
-        }
-        if (paraRef.current) {
-          gsap.set(paraRef.current, { autoAlpha: 0, y: 8 });
-        }
-        if (ctaRef.current) {
-          gsap.set(ctaRef.current, { autoAlpha: 0, y: 8 });
-        }
-        const microItems = [microItem1Ref.current, microItem2Ref.current, microItem3Ref.current].filter(Boolean);
-        if (microItems.length > 0) {
-          gsap.set(microItems, { autoAlpha: 0, y: 6 });
-        }
-
-        const tl = gsap.timeline({
-          defaults: { ease: 'power3.out' },
-        });
-
-        if (badgeRef.current) {
-          tl.to(badgeRef.current, { autoAlpha: 1, y: 0, duration: 0.5 }, 0.0);
-        }
-
-        tl.to(
-          split.lines,
-          {
-            filter: 'blur(0px)',
-            yPercent: 0,
-            autoAlpha: 1,
-            scale: 1,
-            duration: 0.9,
-            stagger: 0.15,
-          },
-          0.1,
-        );
-
-        if (paraRef.current) {
-          tl.to(paraRef.current, { autoAlpha: 1, y: 0, duration: 0.5 }, '-=0.55');
-        }
-        if (ctaRef.current) {
-          tl.to(ctaRef.current, { autoAlpha: 1, y: 0, duration: 0.5 }, '-=0.35');
-        }
-        if (microItems.length > 0) {
-          tl.to(microItems, { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.1 }, '-=0.25');
-        }
+      gsap.set(headerRef.current, {
+        filter: 'blur(16px)',
+        yPercent: 30,
+        autoAlpha: 0,
+        scale: 1.06,
+        transformOrigin: '50% 100%',
       });
+
+      if (badgeRef.current) {
+        gsap.set(badgeRef.current, { autoAlpha: 0, y: -8 });
+      }
+      if (paraRef.current) {
+        gsap.set(paraRef.current, { autoAlpha: 0, y: 8 });
+      }
+      if (ctaRef.current) {
+        gsap.set(ctaRef.current, { autoAlpha: 0, y: 8 });
+      }
+      const microItems = [microItem1Ref.current, microItem2Ref.current, microItem3Ref.current].filter(Boolean);
+      if (microItems.length > 0) {
+        gsap.set(microItems, { autoAlpha: 0, y: 6 });
+      }
+
+      const tl = gsap.timeline({
+        defaults: { ease: 'power3.out' },
+      });
+
+      if (badgeRef.current) {
+        tl.to(badgeRef.current, { autoAlpha: 1, y: 0, duration: 0.5 }, 0.0);
+      }
+
+      tl.to(
+        headerRef.current,
+        {
+          filter: 'blur(0px)',
+          yPercent: 0,
+          autoAlpha: 1,
+          scale: 1,
+          duration: 0.9,
+        },
+        0.1,
+      );
+
+      if (paraRef.current) {
+        tl.to(paraRef.current, { autoAlpha: 1, y: 0, duration: 0.5 }, '-=0.55');
+      }
+      if (ctaRef.current) {
+        tl.to(ctaRef.current, { autoAlpha: 1, y: 0, duration: 0.5 }, '-=0.35');
+      }
+      if (microItems.length > 0) {
+        tl.to(microItems, { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.1 }, '-=0.25');
+      }
     },
     { scope: sectionRef },
   );
