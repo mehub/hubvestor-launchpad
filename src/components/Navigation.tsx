@@ -13,10 +13,10 @@ const Navigation = ({ className }: { className?: string }) => {
   ];
 
   return (
-    <div className={cn("fixed top-0 left-0 right-0 z-50 pt-6 px-6", className)}>
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <NavBar items={navItems} />
-        <Button variant="default" size="sm" className="rounded-full ml-4">
+    <div className={cn("fixed top-0 left-0 right-0 z-50 flex items-center justify-center pt-6", className)}>
+      <div className="flex items-center gap-4">
+        <NavBar items={navItems} className="relative" />
+        <Button variant="default" size="sm" className="rounded-full">
           Join Now
         </Button>
       </div>
