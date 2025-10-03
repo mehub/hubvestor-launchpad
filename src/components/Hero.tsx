@@ -1,14 +1,20 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, TrendingUp } from "lucide-react";
 import heroImage from "@/assets/hero-image.jpg";
+import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
-    <section id="home" className="pt-24 pb-12 md:pt-32 md:pb-20 bg-gradient-to-b from-primary/5 via-background to-background">
-      <div className="container mx-auto px-4">
+    <section id="home" className="min-h-screen w-full pt-24 pb-12 md:pt-32 md:pb-20 bg-gradient-to-b from-primary/5 via-background to-background flex items-center">
+      <div className="w-full px-4 md:px-8 lg:px-16 max-w-[1920px] mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
-          <div className="space-y-8 animate-fade-in">
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="space-y-8"
+          >
             <div className="inline-flex items-center space-x-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">
               <TrendingUp size={16} />
               <span>Connecting Innovation with Investment</span>
@@ -50,10 +56,15 @@ const Hero = () => {
                 <div className="text-sm text-muted-foreground">Funded</div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Image */}
-          <div className="relative animate-fade-in-up">
+          <motion.div 
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative"
+          >
             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
               <img
                 src={heroImage}
@@ -64,7 +75,12 @@ const Hero = () => {
             </div>
             
             {/* Floating Badge */}
-            <div className="absolute -bottom-6 -left-6 bg-card p-6 rounded-xl shadow-xl border border-border animate-float hidden md:block">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              className="absolute -bottom-6 -left-6 bg-card p-6 rounded-xl shadow-xl border border-border hidden md:block"
+            >
               <div className="flex items-center space-x-3">
                 <div className="w-12 h-12 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center">
                   <TrendingUp className="text-white" size={24} />
@@ -74,8 +90,8 @@ const Hero = () => {
                   <div className="text-2xl font-bold text-primary">+150%</div>
                 </div>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>
