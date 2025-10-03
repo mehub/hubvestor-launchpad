@@ -1,40 +1,25 @@
-import React, { useState } from "react";
-import { HoveredLink, Menu, MenuItem } from "@/components/ui/navbar-menu";
+import React from "react";
+import { NavBar } from "@/components/ui/tubelight-navbar";
+import { Button } from "@/components/ui/button";
+import { Home, Users, TrendingUp, HelpCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const Navigation = ({ className }: { className?: string }) => {
-  const [active, setActive] = useState<string | null>(null);
-  
+  const navItems = [
+    { name: 'Home', url: '#home', icon: Home },
+    { name: 'Features', url: '#features', icon: TrendingUp },
+    { name: 'Investors', url: '#investors', icon: Users },
+    { name: 'Help', url: '#help', icon: HelpCircle }
+  ];
+
   return (
-    <div
-      className={cn("fixed top-10 inset-x-0 max-w-2xl mx-auto z-50", className)}
-    >
-      <Menu setActive={setActive}>
-        <MenuItem setActive={setActive} active={active} item="For Founders">
-          <div className="flex flex-col space-y-4 text-sm">
-            <HoveredLink href="#features">Access Investors</HoveredLink>
-            <HoveredLink href="#features">Patent Support</HoveredLink>
-            <HoveredLink href="#features">Banking Solutions</HoveredLink>
-            <HoveredLink href="#features">Insurance Services</HoveredLink>
-          </div>
-        </MenuItem>
-        <MenuItem setActive={setActive} active={active} item="For Investors">
-          <div className="flex flex-col space-y-4 text-sm">
-            <HoveredLink href="#features">Browse Opportunities</HoveredLink>
-            <HoveredLink href="#features">Due Diligence Tools</HoveredLink>
-            <HoveredLink href="#features">Portfolio Management</HoveredLink>
-            <HoveredLink href="#features">Investment Analytics</HoveredLink>
-          </div>
-        </MenuItem>
-        <MenuItem setActive={setActive} active={active} item="Resources">
-          <div className="flex flex-col space-y-4 text-sm">
-            <HoveredLink href="#testimonials">Success Stories</HoveredLink>
-            <HoveredLink href="#features">Platform Guide</HoveredLink>
-            <HoveredLink href="/blog">Blog</HoveredLink>
-            <HoveredLink href="/help">Help Center</HoveredLink>
-          </div>
-        </MenuItem>
-      </Menu>
+    <div className={cn("fixed top-0 left-0 right-0 z-50 flex items-center justify-center pt-6", className)}>
+      <div className="flex items-center gap-4">
+        <NavBar items={navItems} className="relative" />
+        <Button variant="default" size="sm" className="rounded-full">
+          Join Now
+        </Button>
+      </div>
     </div>
   );
 };

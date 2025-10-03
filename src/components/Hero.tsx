@@ -4,8 +4,8 @@ import heroImage from "@/assets/hero-image.jpg";
 
 const Hero = () => {
   return (
-    <section id="home" className="pt-24 pb-12 md:pt-32 md:pb-20 bg-gradient-to-b from-primary/5 via-background to-background">
-      <div className="container mx-auto px-4">
+    <section id="home" className="w-full pt-24 pb-12 md:pt-32 md:pb-20 bg-gradient-to-b from-primary/5 via-background to-background">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div className="space-y-8 animate-fade-in">
