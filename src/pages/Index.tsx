@@ -1,5 +1,5 @@
 import Navigation from "@/components/Navigation";
-import NeuralNetworkHero from "@/components/ui/neural-network-hero";
+import Hero from "@/components/Hero";
 import { BrandsGrid } from "@/components/ui/brands";
 import { Features } from "@/components/ui/features-4";
 import { Testimonials } from "@/components/ui/testimonials";
@@ -80,20 +80,10 @@ const testimonials = [
 
 const Index = () => {
   return (
-    <div className="min-h-screen dark">
-      <NeuralNetworkHero 
-        title="Connecting Founders with Investors to Build Tomorrow's Businesses"
-        description="Hubvestor helps SMB founders access investors, patenting, insurance, and banking support in one place. Everything you need to launch and grow your business."
-        badgeText="Innovation Platform"
-        badgeLabel="New"
-        ctaButtons={[
-          { text: "Join as Founder", href: "#founders", primary: true },
-          { text: "Join as Investor", href: "#investors" }
-        ]}
-        microDetails={["Trusted by 500+ Founders", "$50M+ Funded", "200+ Investors"]}
-      />
+    <div className="min-h-screen bg-black dark">
       <Navigation />
-      <BrandsGrid 
+      <Hero />
+      <BrandsGrid
         brands={brands}
         title="Trusted by leading financial partners"
       />
