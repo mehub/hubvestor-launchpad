@@ -1,10 +1,37 @@
 import Navigation from "@/components/Navigation";
-import Hero from "@/components/Hero";
-import TrustedBrands from "@/components/TrustedBrands";
-import Features from "@/components/Features";
+import NeuralNetworkHero from "@/components/ui/neural-network-hero";
+import { BrandsGrid } from "@/components/ui/brands";
+import { Features } from "@/components/ui/features-4";
 import { Testimonials } from "@/components/ui/testimonials";
 import { CTASection } from "@/components/ui/cta-with-rectangle";
 import { Footer } from "@/components/ui/footer-section";
+
+const brands = [
+  {
+    name: "Chase Bank",
+    logo: "https://assets.rapidui.dev/brands/chase.svg",
+  },
+  {
+    name: "Goldman Sachs",
+    logo: "https://assets.rapidui.dev/brands/goldman-sachs.svg",
+  },
+  {
+    name: "AIG Insurance",
+    logo: "https://assets.rapidui.dev/brands/aig.svg",
+  },
+  {
+    name: "State Farm",
+    logo: "https://assets.rapidui.dev/brands/state-farm.svg",
+  },
+  {
+    name: "Morgan Stanley",
+    logo: "https://assets.rapidui.dev/brands/morgan-stanley.svg",
+  },
+  {
+    name: "Wells Fargo",
+    logo: "https://assets.rapidui.dev/brands/wells-fargo.svg",
+  },
+];
 
 const testimonials = [
   {
@@ -53,34 +80,43 @@ const testimonials = [
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen dark">
+      <NeuralNetworkHero 
+        title="Connecting Founders with Investors to Build Tomorrow's Businesses"
+        description="Hubvestor helps SMB founders access investors, patenting, insurance, and banking support in one place. Everything you need to launch and grow your business."
+        badgeText="Innovation Platform"
+        badgeLabel="New"
+        ctaButtons={[
+          { text: "Join as Founder", href: "#founders", primary: true },
+          { text: "Join as Investor", href: "#investors" }
+        ]}
+        microDetails={["Trusted by 500+ Founders", "$50M+ Funded", "200+ Investors"]}
+      />
       <Navigation />
-      <Hero />
-      <TrustedBrands />
+      <BrandsGrid 
+        brands={brands}
+        title="Trusted by leading financial partners"
+      />
       <Features />
-      <div className="bg-card dark:bg-background">
-        <Testimonials 
-          testimonials={testimonials}
-          title="Success Stories from Our Community"
-          description="Join thousands of founders and investors who have achieved their goals with Hubvestor"
-          maxDisplayed={6}
-          className="container py-16 md:py-24"
-        />
-      </div>
-      <div className="bg-background dark:bg-card">
-        <CTASection
-          badge={{
-            text: "Get Started Today"
-          }}
-          title="Ready to Transform Your Business?"
-          description="Join hundreds of founders and investors who are building the future with Hubvestor"
-          action={{
-            text: "Start Your Journey",
-            href: "#signup",
-            variant: "default"
-          }}
-        />
-      </div>
+      <Testimonials 
+        testimonials={testimonials}
+        title="Success Stories from Our Community"
+        description="Join thousands of founders and investors who have achieved their goals with Hubvestor"
+        maxDisplayed={6}
+        className="container py-16 md:py-24"
+      />
+      <CTASection
+        badge={{
+          text: "Get Started Today"
+        }}
+        title="Ready to Transform Your Business?"
+        description="Join hundreds of founders and investors who are building the future with Hubvestor"
+        action={{
+          text: "Start Your Journey",
+          href: "#signup",
+          variant: "cta"
+        }}
+      />
       <Footer />
     </div>
   );
